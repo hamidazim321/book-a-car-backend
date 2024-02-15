@@ -271,7 +271,7 @@ DEPENDENCIES
   bootsnap
   debug
   devise
-  devise-jwt
+  devise-jwt (~> 0.11.0)
   jsonapi-serializer
   pg (~> 1.1)
   puma (>= 5.0)

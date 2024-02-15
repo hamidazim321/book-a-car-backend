@@ -2,21 +2,19 @@
 class Users::SessionsController < Devise::SessionsController
   include RackSessionsFix
   respond_to :json
+
   private
-  def respond_with(current_user, _opts = {})
-    render json: {
-      status: { 
-        code: 200, message: 'Logged in successfully.',
-        data: { user: UserSerializer.new(current_user).serializable_hash[:data][:attributes] }
-      }
-    }, status: :ok
-  end
+
   def respond_to_on_destroy
     if request.headers['Authorization'].present?
-      jwt_payload = JWT.decode(request.headers['Authorization'].split(' ').last, Rails.application.credentials.secret_key_base).first
-      current_user = User.find(jwt_payload['sub'])
+      token = request.headers['Authorization'].split(' ').last
+      jwt_payload = decode_jwt(token)
+
+      if jwt_payload.present? && jwt_payload.key?('jti')
+        current_user = User.find_by(jti: jwt_payload['jti'])
+      end
     end
-    
+
     if current_user
       render json: {
         status: 200,
@@ -27,6 +25,16 @@ class Users::SessionsController < Devise::SessionsController
         status: 401,
         message: "Couldn't find an active session."
       }, status: :unauthorized
+    end
+  end
+
+  def decode_jwt(token)
+    begin
+      JWT.decode(token, Rails.application.credentials.secret_key_base, true, algorithm: 'HS256').first
+    rescue JWT::DecodeError => e
+      # Handle the error, e.g., log it or return nil
+      Rails.logger.error("JWT Decode Error: #{e.message}")
+      nil
     end
   end
 end
