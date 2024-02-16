@@ -5,7 +5,7 @@ module Api
       before_action :set_reservation, only: %i[show update destroy]
 
       def index
-        @reservations = current_user.reservations
+        @reservations = current_api_v1_user.reservations
         render json: @reservations
       end
 
@@ -14,7 +14,7 @@ module Api
       end
 
       def create
-        @reservation = current_user.reservations.build(reservation_params)
+        @reservation = current_api_v1_user.reservations.build(reservation_params)
 
         if @reservation.save
           render json: @reservation, status: :created
@@ -39,7 +39,7 @@ module Api
       private
 
       def set_reservation
-        @reservation = current_user.reservations.find(params[:id])
+        @reservation = current_api_v1_user.reservations.find(params[:id])
       rescue ActiveRecord::RecordNotFound
         render json: { error: 'Record not found' }, status: :not_found
       end
