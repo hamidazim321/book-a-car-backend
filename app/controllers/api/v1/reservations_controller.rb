@@ -3,7 +3,7 @@ module Api
     class ReservationsController < ApplicationController
       load_and_authorize_resource
       before_action :set_reservation, only: %i[show update destroy]
-      
+
       def index
         @reservations = current_user.reservations
         render json: @reservations
@@ -15,14 +15,13 @@ module Api
 
       def create
         @reservation = current_user.reservations.build(reservation_params)
-      
+
         if @reservation.save
           render json: @reservation, status: :created
         else
           render json: { errors: @reservation.errors.full_messages }, status: :unprocessable_entity
         end
       end
-      
 
       def update
         if @reservation.update(reservation_params)
