@@ -5,7 +5,7 @@ module Api
       before_action :set_reservation, only: %i[show update destroy]
 
       def index
-        @reservations = current_api_v1_user.reservations
+        @reservations = current_api_v1_user.reservations.includes(:car)
         render json: @reservations
       end
 
