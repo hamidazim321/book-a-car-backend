@@ -39,6 +39,7 @@ class CarsController < ApplicationController
       head :no_content
     else
       render json: { errors: @car.errors.full_messages.to_sentence }, status: :unprocessable_entity
+    end
   end
 
   private
