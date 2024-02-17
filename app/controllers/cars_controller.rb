@@ -35,7 +35,10 @@ class CarsController < ApplicationController
 
   # DELETE /cars/1
   def destroy
-    @car.destroy!
+    if @car.destroy
+      head :no_content
+    else
+      render json: { errors: @car.errors.full_messages.to_sentence }, status: :unprocessable_entity
   end
 
   private
