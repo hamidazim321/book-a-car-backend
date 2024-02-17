@@ -11,6 +11,8 @@ Rails.application.routes.draw do
         registrations: 'api/v1/users/registrations'
       }
       resources :reservations
+      resources :cars
     end
   end
+  get "up" => "rails/health#show", as: :rails_health_check
 end
