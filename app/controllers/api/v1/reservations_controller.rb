@@ -39,7 +39,7 @@ module Api
       private
 
       def set_reservation
-        @reservation = current_api_v1_user.reservations.find(params[:id])
+        @reservation = current_api_v1_user.reservations.includes(:car).find(params[:id])
       rescue ActiveRecord::RecordNotFound
         render json: { error: 'Record not found' }, status: :not_found
       end
