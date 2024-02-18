@@ -1,5 +1,5 @@
 module Api
-  module V1    
+  module V1
     class CarsController < ApplicationController
       before_action :set_car, only: %i[show update destroy]
 
