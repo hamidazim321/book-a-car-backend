@@ -2,11 +2,11 @@ module Api
   module V1
     class CarsController < ApplicationController
       before_action :set_car, only: %i[show update destroy]
+      load_and_authorize_resource except: [:create]
 
       # GET /cars
       def index
-        @cars = Car.all
-
+        @cars = Car.accessible_by(current_ability)
         render json: @cars
       end
 
@@ -18,6 +18,7 @@ module Api
       # POST /cars
       def create
         @car = Car.new(car_params)
+        authorize! :create, @car
 
         if @car.save
           render json: @car, status: :created

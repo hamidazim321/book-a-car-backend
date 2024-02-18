@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::API
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_api_v1_user!
+  before_action :current_ability
+
+  rescue_from CanCan::AccessDenied do |exception|
+    render json: { error: exception.message }, status: :forbidden
+  end
 
   protected
 
