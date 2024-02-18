@@ -6,11 +6,11 @@ module Api
 
       def index
         @reservations = current_api_v1_user.reservations.includes(:car)
-        render json: @reservations
+        render json: @reservations, include: :car
       end
 
       def show
-        render json: @reservation
+        render json: @reservation, include: :car
       end
 
       def create
