@@ -7,7 +7,6 @@ module Api
       # GET /cars
       def index
         @cars = Car.accessible_by(current_ability)
-
         render json: @cars
       end
 
@@ -19,6 +18,7 @@ module Api
       # POST /cars
       def create
         @car = Car.new(car_params)
+        authorize! :create, @car
 
         if @car.save
           render json: @car, status: :created
