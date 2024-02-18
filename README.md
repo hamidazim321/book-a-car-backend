@@ -53,6 +53,7 @@
 - **User Authentication**
 - **User Authorization**
 - **CRUD applications on database**
+- **API**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

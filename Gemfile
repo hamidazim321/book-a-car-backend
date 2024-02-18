@@ -47,3 +47,8 @@ end
 gem 'rubocop', '>= 1.0', '< 2.0'
 
 gem 'rack-cors'
+
+gem 'cancancan'
+gem 'devise'
+gem 'devise-jwt', '~> 0.11.0'
+gem 'jsonapi-serializer'
