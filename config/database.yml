@@ -15,13 +15,11 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  # username: postgres
-  # password: 123456
+  username: postgres
+  password: 123456
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  # username: fire
-  # password: sql
 
 development:
   <<: *default
@@ -84,5 +82,3 @@ test:
 production:
   <<: *default
   database: book_a_car_backend_production
-  username: fire
-  password: sql
