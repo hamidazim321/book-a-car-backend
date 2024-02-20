@@ -46,7 +46,8 @@ RSpec.describe Api::V1::CarsController, type: :controller do
       it 'returns a created response' do
         sign_in user
         post :create,
-             params: { car: { name: 'Test Car', description: 'Test Description', price: 100, manufacturer: 'Test Manufacturer',
+             params: { car: { name: 'Test Car', description: 'Test Description',
+                              price: 100, manufacturer: 'Test Manufacturer',
                               image: fixture_file_upload('car.png', 'image/png') } }
         expect(response).to have_http_status(:created)
       end
