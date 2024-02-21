@@ -5,6 +5,12 @@ RSpec.describe Api::V1::CarsController, type: :controller do
     User.create(name: 'Test User', email: 'test@example.com', password: 'password', password_confirmation: 'password',
                 admin: true)
   end
+
+  before do
+    Reservation.delete_all
+    Car.delete_all
+  end
+
   describe 'GET #index' do
     it 'returns a success response' do
       sign_in user

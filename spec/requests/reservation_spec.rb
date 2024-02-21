@@ -99,9 +99,9 @@ RSpec.describe Api::V1::ReservationsController, type: :controller do
     end
     it 'does not allow updating a reservation that does not belong to the current user' do
       sign_in user
-      other_user = User.create(name: 'Other User', email: 'other@example.com', password: 'password',
-                               password_confirmation: 'password')
-      other_reservation = Reservation.create(date: Date.today, city: 'Other City', user: other_user, car:)
+      other_user = User.create!(name: 'Other User', email: 'other@example.com', password: 'password',
+                                password_confirmation: 'password')
+      other_reservation = Reservation.create!(date: Date.yesterday, city: 'Other City', user: other_user, car:)
 
       patch :update, params: { id: other_reservation.id, reservation: { date: Date.tomorrow } }
       expect(response).to have_http_status(:forbidden)
