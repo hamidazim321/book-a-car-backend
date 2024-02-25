@@ -7,7 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: self
 
-  has_many :reservations
+  has_many :reservations, dependent: :destroy
   has_many :cars, through: :reservations
 
   validates :name, presence: true, length: { maximum: 255 }
