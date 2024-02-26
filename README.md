@@ -89,8 +89,21 @@ Install Ruby and Rails on your local machine
 ### Install
 
 Install this project with:
-
 ```git clone git@github.com:hamidazim321/hello-rails-backend.git```
+
+Install all project dependencies with:
+```bundle install```
+
+### Create Database
+Run ```rails db:create``` to create the database <br />
+Run ```rails db:migrate``` to set up the tables from schema  <br />
+Run ```rails db:seed``` to pre-populate the database with required data  <br />
+
+### Start
+Run ```rails server``` to start the server and run the project
+
+### Testing
+Run ```rspec``` to execute tests
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
