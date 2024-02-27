@@ -67,6 +67,7 @@
 ### Kanban Board <a name="kanban-board"></a>
 - To see Kanban Board at the start of the project click [here](https://drive.google.com/file/d/1lQxbcpK5mH3S6N_G8HEMWJUgVZiQMX0-/view?usp=sharing):
 - To see the Kanban Board of this project click [here](https://github.com/users/hamidazim321/projects/4)
+- We, a group of 5 members, worked collaboratively on this project. We divided our team into 2 groups to work on frontend and backend
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
