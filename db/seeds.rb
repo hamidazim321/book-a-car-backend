@@ -18,4 +18,11 @@ if Rails.env.development?
   end
 end
 
-
+if Rails.env.production?
+  admin = User.find_or_initialize_by(email: 'admin@example.com')
+  admin.name = 'Admin User'
+  admin.password = ENV['ADMIN_PASSWORD'] || 'default_secure_password'
+  admin.admin = true
+  admin.save!
+  puts 'Seeded DB with admin account'
+end
